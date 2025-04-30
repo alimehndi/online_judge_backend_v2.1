@@ -13,7 +13,9 @@
   "author": "@alimehndi",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "@types/mongoose": "^5.11.96",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
