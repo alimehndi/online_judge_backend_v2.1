@@ -1,5 +1,5 @@
 import mongoose, { model, Schema } from "mongoose";
-import IUser from "./user.js";
+import {IUser} from "./user.js";
 const userSchema   = new Schema<IUser>({
     username: {
         type: String,

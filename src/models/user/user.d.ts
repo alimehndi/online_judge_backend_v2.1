@@ -5,4 +5,14 @@ interface IUser {
     isAdmin: boolean
 }
 
-export default IUser;
+interface IQuestion {
+    _id : {
+       type :  string,
+       required : true,
+    },
+    questionDescription : {
+        type :  string,
+       required : true,
+    }
+}
+export { IUser,IQuestion};
