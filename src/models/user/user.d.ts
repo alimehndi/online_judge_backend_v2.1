@@ -1,18 +1,32 @@
 interface IUser {
-    username : string,
+    username: string,
     email: string,
-    password : string,
+    password: string,
     isAdmin: boolean
 }
 
 interface IQuestion {
-    _id : {
-       type :  string,
-       required : true,
+    _id: {
+        type: string,
+        required: true,
     },
-    questionDescription : {
-        type :  string,
-       required : true,
+    questionDescription: {
+        type: string,
+        required: true,
     }
 }
-export { IUser,IQuestion};
+interface IAnswer {
+    _id: {
+        type: string,
+        required: true,
+    },
+    languageChosen: {
+        type: String,
+        required: true,
+    },
+    answerDescription: {
+        type: string,
+        required: true,
+    }
+}
+export { IUser, IQuestion, IAnswer };
