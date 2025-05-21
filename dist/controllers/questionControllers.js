@@ -30,8 +30,8 @@ const getQuestionsList = asyncHandler((req, res) => __awaiter(void 0, void 0, vo
 // @ route api/v1/question/{id}
 // @ access private
 const getQuestion = asyncHandler((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const questionId = req.query.questionId;
-    const question = yield Question.findById({ questionId });
+    const questionId = req.params.questionId;
+    const question = yield Question.findById(questionId);
     res.status(200).json({
         question: question
     });

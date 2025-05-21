@@ -38,7 +38,7 @@ userSchema.methods.matchPassword = function (enteredPassword) {
 };
 userSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
-        if (!this.isModified(this.password)) {
+        if (this.isModified(this.password)) {
             return next();
         }
         const salt = yield bcrypt.genSalt(10);

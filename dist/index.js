@@ -3,13 +3,16 @@ import connectDb from "./config/connectDB.js";
 import dotenv from 'dotenv';
 import { userRouter } from "./Routes/userRoutes.js";
 import { questionRouter } from "./Routes/questionRoutes.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 connectDb();
 const app = express();
+app.use(express.json());
+app.use(cookieParser());
 const port = 3001;
 app.use('/api/v1/users', userRouter);
-app.use('/api/v1/question', questionRouter);
-app.get('/s', (req, res) => {
+app.use('/api/v1/questions', questionRouter);
+app.get('/check', (req, res) => {
     res.send(`gtd`);
 });
 app.get('/', (req, res) => {

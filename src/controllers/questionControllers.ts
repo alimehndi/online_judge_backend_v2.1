@@ -27,9 +27,9 @@ const getQuestionsList = asyncHandler(async (req: Request, res: Response) => {
 // @ access private
 
 const getQuestion = asyncHandler(async (req: Request, res: Response) => {
-    const questionId = req.query.questionId;
-    const question = await Question.findById({ questionId });
 
+    const questionId = req.params.questionId;
+    const question = await Question.findById(questionId);
     res.status(200).json({
 
         question: question

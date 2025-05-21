@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-const generateToken = (res, user_id) => {
-    const token = jwt.sign({ user_id }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
+const generateToken = (res, email) => {
+    const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
     res.cookie('jwtOnlineJudge', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV !== 'development', // Use secure cookies in production

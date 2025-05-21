@@ -35,6 +35,6 @@ interface IAnswer {
 }
 
 interface IJwtPayload {
-    user_id: string
+    email: string
 }
 export { IUser, IQuestion, IQuestionExample, IAnswer, IJwtPayload };

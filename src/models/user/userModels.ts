@@ -33,7 +33,8 @@ userSchema.methods.matchPassword = async function (this: IUser, enteredPassword:
 }
 
 userSchema.pre('save', async function (this: HydratedDocument<IUser>, next) {
-    if (!this.isModified(this.password)) {
+    
+    if (this.isModified(this.password)) {
         return next();
     }
 

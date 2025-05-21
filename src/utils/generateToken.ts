@@ -3,8 +3,8 @@ import asyncHandler from "../middlewares/asyncHandler.js";
 import { IUser } from "../models/user/interface.js";
 import { Response } from "express";
 
-const generateToken = (res: Response, user_id : string)=> {
-    const token =  jwt.sign({user_id}, process.env.JWT_SECRET_KEY as string, {  expiresIn: '1d' });
+const generateToken = (res: Response, email : string)=> {
+    const token =  jwt.sign({email}, process.env.JWT_SECRET_KEY as string, {  expiresIn: '1d' });
     res.cookie('jwtOnlineJudge', token ,{
         httpOnly: true,
         secure: process.env.NODE_ENV !== 'development', // Use secure cookies in production

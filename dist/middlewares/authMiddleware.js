@@ -11,13 +11,14 @@ import User from "../models/user/userModels.js";
 import asyncHandler from "./asyncHandler.js";
 import jwt from "jsonwebtoken";
 const protect = asyncHandler((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     let token;
-    token = req.cookies.jwtOnlineJudge;
+    token = (_a = req.cookies) === null || _a === void 0 ? void 0 : _a.jwtOnlineJudge;
     const jwt_secret_key = process.env.JWT_SECRET_KEY || "";
     if (token) {
         try {
             const decoded = jwt.verify(token, jwt_secret_key);
-            const user = User.findById(decoded.user_id).select('-password');
+            const user = User.findOne({ decoded }).select('-password');
             next();
         }
         catch (error) {
