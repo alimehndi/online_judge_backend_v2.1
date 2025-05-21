@@ -1,6 +1,7 @@
-import mongoose, { model, Schema } from "mongoose";
-import {IUser} from "./user.js";
-const userSchema   = new Schema<IUser>({
+import mongoose, { HydratedDocument, model, Schema } from "mongoose";
+import { IUser } from "./interface.js";
+import bcrypt from "bcryptjs";
+const userSchema = new Schema<IUser>({
     username: {
         type: String,
         required: true
@@ -19,11 +20,28 @@ const userSchema   = new Schema<IUser>({
     isAdmin: {
         type: Boolean,
         required: true,
-        default: false,     
-    }},{
-        timestamps : true,
-    });
+        default: false,
+    }
+}, {
+    timestamps: true,
+}
 
-const UserModel = model<IUser>('UserModel', userSchema);
+);
 
-export default UserModel;
+userSchema.methods.matchPassword = async function (this: IUser, enteredPassword: string): Promise<boolean> {
+    return await bcrypt.compare(enteredPassword, this.password);
+}
+
+userSchema.pre('save', async function (this: HydratedDocument<IUser>, next) {
+    if (!this.isModified(this.password)) {
+        return next();
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+})
+
+const User = model<IUser>('User', userSchema);
+
+export default User;
