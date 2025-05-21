@@ -12,8 +12,9 @@ const app = express();
 const port = 3001;
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/question',questionRouter);
-app.use('/', (req,res)=> {
-  res.status(200).json({message : 'server is UP and running successfully'});
+
+app.get('/', (req : Request,res : Response) => {
+    res.status(200).json({message : 'server is UP and running successfully'});
 })
 app.listen(port , () => {
     console.log(`Server is successfully running on port ${port}`);
