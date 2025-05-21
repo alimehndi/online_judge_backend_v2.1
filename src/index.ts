@@ -12,7 +12,9 @@ const app = express();
 const port = 3001;
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/question',questionRouter);
-
+app.get('/check', (req : Request,res : Response) => {
+    res.send(`gtd`);
+})
 app.get('/', (req : Request,res : Response) => {
     res.status(200).json({message : 'server is UP and running successfully'});
 })
